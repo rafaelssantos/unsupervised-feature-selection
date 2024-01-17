@@ -1,0 +1,7 @@
+/home/rafael/Workspace/GitHub/unsupervised-feature-selection/build/CMakeFiles/ufs.dir
+/home/rafael/Workspace/GitHub/unsupervised-feature-selection/build/CMakeFiles/edit_cache.dir
+/home/rafael/Workspace/GitHub/unsupervised-feature-selection/build/CMakeFiles/rebuild_cache.dir
+/home/rafael/Workspace/GitHub/unsupervised-feature-selection/build/CMakeFiles/list_install_components.dir
+/home/rafael/Workspace/GitHub/unsupervised-feature-selection/build/CMakeFiles/install.dir
+/home/rafael/Workspace/GitHub/unsupervised-feature-selection/build/CMakeFiles/install/local.dir
+/home/rafael/Workspace/GitHub/unsupervised-feature-selection/build/CMakeFiles/install/strip.dir
