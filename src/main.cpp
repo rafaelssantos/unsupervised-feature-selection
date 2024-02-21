@@ -31,15 +31,15 @@ int main(int argc, char *argv[]) {
         switch(atoi(strFlag.c_str())) {
             case 1:
                 flag = MeasureFlag::LeastSquares;
-                fileInfo = "'Least Squares Regression Error'";
+                fileInfo = "Least Squares Regression Error";
                 break;
             case 2:
                 flag = MeasureFlag::MaximalInformation;
-                fileInfo = "'Maximal Information Compression Index'";
+                fileInfo = "Maximal Information Compression Index";
                 break;
             default:
                 flag = MeasureFlag::Pearson;
-                fileInfo = "'Pearson Correlation Coefficient'";
+                fileInfo = "Pearson Correlation Coefficient";
         }
 
 
