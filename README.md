@@ -1,6 +1,6 @@
 # unsupervised-feature-selection
 An unsupervised feature selection technique based on feature similarity.
-This repository implements the feature selection technique proposed by [Mitra, P., Murthy, C.A. and Pal, S.K. (2002)](https://ieeexplore.ieee.org/abstract/document/990133).
+This repository implements a feature selection technique that produces a dissimilarity ranking. The technique is based on the work of [Mitra, P., Murthy, C.A. and Pal, S.K. (2002)](https://ieeexplore.ieee.org/abstract/document/990133).
 
 ## Feature similarity measures
 - Maximal information compression index;
