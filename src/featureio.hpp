@@ -1,5 +1,5 @@
-#ifndef FEATURE_io
-#define FEATURE_io
+#ifndef FEATURE_IO
+#define FEATURE_IO
 
 #include <list>
 #include <map>
@@ -43,4 +43,4 @@ public:
     void writeSimilarity(const SimilarityMat &mat, std::string info, std::string filePath) const;
 };
 
-#endif // FEATURE_io
+#endif // FEATURE_IO

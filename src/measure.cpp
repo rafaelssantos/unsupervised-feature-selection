@@ -90,5 +90,5 @@ float Measure::maximalInfo(const std::vector<float> &variable1, const std::vecto
     var2 = Measure::variance(variable2);
     corr = Measure::correlation(variable1, variable2);
 
-    return var1 + var2 - sqrtf(powf((var1 + var2), 2.0f)- 4.0f * var1 * var2 * (powf((1 - corr), 2.0f)));
+    return (var1 + var2 - sqrtf(powf((var1 + var2), 2.0f)- 4.0f * var1 * var2 * (powf((1 - corr), 2.0f)))) / 2.0f;
 }

@@ -1,3 +1,5 @@
+#include <chrono>
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -5,6 +7,7 @@
 #include "ufs.hpp"
 
 using namespace std;
+using namespace std::chrono;
 
 
 int main(int argc, char *argv[]) {
@@ -45,7 +48,7 @@ int main(int argc, char *argv[]) {
 
 
         UFS ufs;
-        FeatureIO dataIO;
+        FeatureIO featureIO;
 
 
 
@@ -56,22 +59,37 @@ int main(int argc, char *argv[]) {
 
         cout << "READING\n";
         cout << "\t" << input << "\n";
-        map<string, Feature> *features = dataIO.read(input);
+        map<string, Feature> *features = featureIO.read(input);
 
         cout << "RUNNING\n";
+        auto start = high_resolution_clock::now();
+
         mat.build(*features, flag);
-        ranking = ufs.rank(*features, featureN1, flag);
-        
+        ranking = ufs.rank(*features, mat, featureN1);
+
+        auto stop = high_resolution_clock::now();
+        auto duration = duration_cast<seconds>(stop - start);
+
+
         cout << "SAVING SIMILARITY MATRIX\n";
         cout << "\t" << outputMatrix << "\n";
-        dataIO.writeSimilarity(mat, fileInfo, outputMatrix);
+        featureIO.writeSimilarity(mat, fileInfo, outputMatrix);
 
         cout << "SAVING RANKING\n";
         cout << "\t" << outputRanking << "\n";
-        dataIO.writeRanking(ranking, fileInfo, outputRanking);
+        featureIO.writeRanking(ranking, fileInfo, outputRanking);
 
         delete features;
         features = nullptr;
+
+
+        ofstream file;
+        file.open("runtime.log", ios::app);
+        file << input << "\n";
+        file << fileInfo << "\n";
+        file << "Runtime (in seconds): " << duration.count() << "\n";
+        
+        file.close();
 
         cout << "\n...Done!\n";
     }

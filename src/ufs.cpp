@@ -15,7 +15,7 @@ UFS::~UFS() {
 }
 
 
-list<string> UFS::rank(const map<string, Feature> &features, string featureN1, MeasureFlag flag) const
+list<string> UFS::rank(const map<string, Feature> &features, const SimilarityMat &mat, string featureN1) const
 {
     list<string> selected;
     list<string> nonSelected;
@@ -33,12 +33,12 @@ list<string> UFS::rank(const map<string, Feature> &features, string featureN1, M
     }
 
     while (nonSelected.size() > 0){
-        float min = this->calcSimilarity(features.at(selected.front()), features.at(nonSelected.front()), flag);
+        float min = mat.getValue(selected.front(), nonSelected.front());
         string key = nonSelected.front();
 
         for(auto k = nonSelected.begin(); k != nonSelected.end(); k++){
             for (auto i = selected.begin(); i != selected.end(); i++){
-                float similarity = this->calcSimilarity(features.at(*i), features.at(*k), flag);
+                float similarity = mat.getValue(features.at(*i).getName(), features.at(*k).getName());
                 if(similarity < min){
                     min = similarity;
                     key = *k;
@@ -50,23 +50,4 @@ list<string> UFS::rank(const map<string, Feature> &features, string featureN1, M
     }
 
     return selected;
-}
-
-
-
-float UFS::calcSimilarity(const Feature &f1, const Feature &f2, MeasureFlag flag) const {
-    float similarity;
-
-    
-    if(flag == MeasureFlag::LeastSquares){
-        similarity = Measure::leastSquares(f1.getValues(), f2.getValues());
-    }
-    else if (flag == MeasureFlag::MaximalInformation){
-        similarity = Measure::maximalInfo(f1.getValues(), f2.getValues());
-    }
-    else {
-        similarity = Measure::correlation(f1.getValues(), f2.getValues());
-    }
-    
-    return fabsf(similarity);
 }
